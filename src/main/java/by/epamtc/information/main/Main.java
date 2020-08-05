@@ -2,7 +2,7 @@ package by.epamtc.information.main;
 
 import by.epamtc.information.dao.DAOFactory;
 import by.epamtc.information.dao.InformationDAO;
-import by.epamtc.information.entity.Text;
+import by.epamtc.information.entity.impl.Text;
 import by.epamtc.information.entity.TextElement;
 
 import java.util.List;

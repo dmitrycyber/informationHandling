@@ -1,35 +1,28 @@
 package by.epamtc.information.dao.impl;
 
+import by.epamtc.information.dao.CustomFileReader;
 import by.epamtc.information.dao.InformationDAO;
-import by.epamtc.information.dao.parser.TextParser;
+import by.epamtc.information.dao.impl.parser.TextElementParser;
 import by.epamtc.information.entity.*;
+import by.epamtc.information.entity.impl.Paragraph;
+import by.epamtc.information.entity.impl.PunctuationMark;
+import by.epamtc.information.entity.impl.Text;
+import by.epamtc.information.entity.impl.Word;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class InformationDAOImpl implements InformationDAO {
-    private TextParser parser = TextParser.getInstance();
+    private TextElementParser parser = new TextElementParser();
+    private CustomFileReader customFileReader = new CustomFileReaderImpl();
 
     @Override
     public Text text(String fileName) {
-        String source = null;
         Text text = new Text();
-        try(Reader reader = new FileReader(getClass().getClassLoader().getResource(fileName).getPath());
-            BufferedReader bufferedReader = new BufferedReader(reader)
-        ) {
-            source = bufferedReader.lines()
-                    .map(line -> line + "\n")
-                    .reduce((line1, line2) -> line1 + line2)
-                    .orElse(null);
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        text.setText(source);
+        final String sourceText = customFileReader.stringFromFile(fileName);
+        text.setText(sourceText);
         return text;
     }
     
@@ -38,15 +31,29 @@ public class InformationDAOImpl implements InformationDAO {
     public List<TextElement> textElementList(Text text) {
         List<TextElement> textElements = new ArrayList<>();
 
-        final String[] split = text.getText().split("\n");
+        String titleRegex = "^\\d.+\\n";
+        String paragraphRegex = "(?<TextBlock>[^{}]+\\n)";
+        String codeBlockRegex = ".*\\{\\n(.*\\n)+?\\n*}\\n";
 
-        for (String line : split) {
-            if (line.endsWith(":") || line.endsWith(".")){
-                textElements.add(new Paragraph(line));
-            }
+        getClass();
+        Pattern pattern = Pattern.compile(codeBlockRegex);
+        Matcher matcher = pattern.matcher(text.getText());
+
+        while (matcher.find()){
+            System.out.println(matcher.group());
         }
 
 
+//        final String[] split = text.getText().split("\n");
+//
+//        for (String line : split) {
+//            if (line.endsWith(":") || line.endsWith(".")){
+//                textElements.add(new Paragraph(line));
+//            }
+//            if (line.startsWith("\\d")){
+//                textElements.add(new Title(line));
+//            }
+//        }
 
         return textElements;
     }

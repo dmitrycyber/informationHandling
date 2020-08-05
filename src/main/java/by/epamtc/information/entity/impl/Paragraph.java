@@ -1,4 +1,6 @@
-package by.epamtc.information.entity;
+package by.epamtc.information.entity.impl;
+
+import by.epamtc.information.entity.TextElement;
 
 import java.util.List;
 

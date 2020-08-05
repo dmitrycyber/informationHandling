@@ -1,4 +1,4 @@
-package by.epamtc.information.entity;
+package by.epamtc.information.entity.impl;
 
 import java.util.List;
 
