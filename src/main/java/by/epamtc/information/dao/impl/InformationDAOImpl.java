@@ -31,16 +31,28 @@ public class InformationDAOImpl implements InformationDAO {
     public List<TextElement> textElementList(Text text) {
         List<TextElement> textElements = new ArrayList<>();
 
-        String titleRegex = "^\\d.+\\n";
-        String paragraphRegex = "(?<TextBlock>[^{}]+\\n)";
-        String codeBlockRegex = ".*\\{\\n(.*\\n)+?\\n*}\\n";
+        String s = "(?<Title>\\d\\.( |\\d)*.+[^.]\\n)|(?<Paragraph>.+[^;}{][.:!?]*\\n)|(?<CodeBlock>.*\\{\\n(.*\\n)+?\\n*(}\\n)+((.+;\\n)*(}\\n)+)*)";
 
-        getClass();
-        Pattern pattern = Pattern.compile(codeBlockRegex);
+        Pattern pattern = Pattern.compile(s);
         Matcher matcher = pattern.matcher(text.getText());
 
         while (matcher.find()){
-            System.out.println(matcher.group());
+            String title = matcher.group("Title");
+            String paragraph = matcher.group("Paragraph");
+            String codeBlock = matcher.group("CodeBlock");
+
+            if (title != null){
+                System.out.println("!!!!!!!!!!!!!!!title");
+                System.out.println(title);
+            }
+            if (paragraph != null){
+                System.out.println("!!!!!!!!!!!!!!!!!!paragraph");
+                System.out.println(paragraph);
+            }
+            if (codeBlock != null){
+                System.out.println("!!!!!!!!!!!!!!!!!!codeBlock");
+                System.out.println(codeBlock);
+            }
         }
 
 
