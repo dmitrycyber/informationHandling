@@ -5,6 +5,7 @@ import by.epamtc.information.dao.InformationDAO;
 import by.epamtc.information.entity.impl.Text;
 import by.epamtc.information.entity.TextElement;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Main {
@@ -18,6 +19,10 @@ public class Main {
 
 //        System.out.println(text);
         System.out.println(textElements.size());
+
+
+        ApplicationContext context = Application.run("by.epamtc.information", new HashMap<>());
+
 
     }
 
