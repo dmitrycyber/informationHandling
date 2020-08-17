@@ -1,30 +1,23 @@
 package by.epamtc.information.main;
 
-import by.epamtc.information.dao.DAOFactory;
 import by.epamtc.information.dao.InformationDAO;
-import by.epamtc.information.entity.impl.Text;
-import by.epamtc.information.entity.TextElement;
-
+import by.epamtc.information.entity.impl.*;
+import by.epamtc.information.service.TextPrinterService;
 import java.util.HashMap;
-import java.util.List;
+
 
 public class Main {
+
+
     public static void main(String[] args) {
-
-        final DAOFactory instance = DAOFactory.getInstance();
-        final InformationDAO informationDAO = instance.getInformationDAO();
-
-        final Text text = informationDAO.text("text.txt");
-        final List<TextElement> textElements = informationDAO.textElementList(text);
-
-//        System.out.println(text);
-        System.out.println(textElements.size());
-
-
         ApplicationContext context = Application.run("by.epamtc.information", new HashMap<>());
 
+        InformationDAO informationDAO = context.getObject(InformationDAO.class);
 
+        TextPrinterService textPrinterService = context.getObject(TextPrinterService.class);
+
+        Text text = informationDAO.createText("text.txt");
+
+        textPrinterService.printText(text);
     }
-
-
 }

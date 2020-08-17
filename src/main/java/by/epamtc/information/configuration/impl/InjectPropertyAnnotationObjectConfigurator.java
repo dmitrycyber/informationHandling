@@ -1,5 +1,8 @@
-package by.epamtc.information.main;
+package by.epamtc.information.configuration.impl;
 
+import by.epamtc.information.configuration.ObjectConfigurator;
+import by.epamtc.information.configuration.annotation.InjectProperty;
+import by.epamtc.information.main.ApplicationContext;
 import lombok.SneakyThrows;
 
 import java.io.BufferedReader;

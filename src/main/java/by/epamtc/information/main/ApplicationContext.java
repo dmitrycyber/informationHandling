@@ -1,5 +1,9 @@
 package by.epamtc.information.main;
 
+import by.epamtc.information.configuration.Config;
+import by.epamtc.information.configuration.ObjectFactory;
+import by.epamtc.information.configuration.annotation.Singleton;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

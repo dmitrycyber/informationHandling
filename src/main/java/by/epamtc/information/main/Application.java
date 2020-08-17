@@ -1,5 +1,8 @@
 package by.epamtc.information.main;
 
+import by.epamtc.information.configuration.ObjectFactory;
+import by.epamtc.information.configuration.impl.JavaConfig;
+
 import java.util.Map;
 
 public class Application {
@@ -7,7 +10,7 @@ public class Application {
         JavaConfig config = new JavaConfig(packageToSkan, ifc2ImplClass);
         ApplicationContext context = new ApplicationContext(config);
         ObjectFactory objectFactory = new ObjectFactory(context);
-        //todo - init all singletones which are not lazy
+
         context.setFactory(objectFactory);
         return context;
 

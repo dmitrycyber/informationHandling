@@ -1,5 +1,7 @@
-package by.epamtc.information.main;
+package by.epamtc.information.configuration;
 
+import by.epamtc.information.configuration.ObjectConfigurator;
+import by.epamtc.information.main.ApplicationContext;
 import lombok.SneakyThrows;
 
 import javax.annotation.PostConstruct;

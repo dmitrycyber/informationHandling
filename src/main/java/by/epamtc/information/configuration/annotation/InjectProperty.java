@@ -1,4 +1,4 @@
-package by.epamtc.information.main;
+package by.epamtc.information.configuration.annotation;
 
 import java.lang.annotation.Retention;
 

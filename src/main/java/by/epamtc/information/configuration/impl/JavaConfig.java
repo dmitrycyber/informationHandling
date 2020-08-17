@@ -1,5 +1,6 @@
-package by.epamtc.information.main;
+package by.epamtc.information.configuration.impl;
 
+import by.epamtc.information.configuration.Config;
 import lombok.Getter;
 import org.reflections.Reflections;
 
